@@ -1,0 +1,32 @@
+namespace yielddemo
+{
+   public class valuevsref
+    {
+        
+        public int valPassByValue(int y)
+        {
+            y = y + 10;
+            return y;
+        }
+        public int valPassByRef(ref int y)
+        {
+            y = y + 10;
+            return y;
+        }
+        public void refPassByVal(car mycar)
+        {
+            mycar.ModelNumber = 25;
+            mycar.Make = "Mercedes Benz";
+        }
+        public void refPassByRef(ref car mycar)
+        {
+            mycar.ModelNumber = 25;
+            mycar.Make = "Mercedes Benz";
+        }
+    }
+    public class car
+    {
+        public int ModelNumber { get; set; }
+        public string Make { get; set; }
+    }
+}
