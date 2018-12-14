@@ -1,32 +1,46 @@
-namespace yielddemo
+using System;
+using System.Threading.Tasks;
+
+namespace Ays.ValvsRef
 {
-   public class valuevsref
-    {
-        
-        public int valPassByValue(int y)
+    class Program
+    {        
+        static void Main(string[] args)
         {
-            y = y + 10;
-            return y;
+            CallingHack obj = new CallingHack();
+            int x = 10, y=0;
+            car mycar = new car { ModelNumber = 10, Make = "BMW" };
+
+            Console.WriteLine("-------------***********------------");
+            Console.WriteLine($"Before function calling x: {x}");
+            Console.WriteLine($"Before function calling y: {y}");
+            Console.WriteLine("Value Type, Pass By Value");
+            y=obj.valPassByValue(x);
+            Console.WriteLine($"After function calling x: {x}");
+            Console.WriteLine($"After function calling y: {y}");
+
+            Console.WriteLine("-------------***********------------");
+            Console.WriteLine($"Before function calling x: {x}");
+            Console.WriteLine($"Before function calling y: {y}");
+            Console.WriteLine("Value Type, Pass By Ref");
+           y= obj.valPassByRef(ref x);
+            Console.WriteLine($"After function calling x: {x}");
+            Console.WriteLine($"After function calling y: {y}");
+
+            Console.WriteLine("-------------***********------------");
+            Console.WriteLine($"Before function calling {{10,BMW}} ::  {mycar.ModelNumber}\t{mycar.Make}");
+            Console.WriteLine("Ref Type, Pass By Value");
+            obj.refPassByVal(mycar);
+            Console.WriteLine($"After function calling  ::  {mycar.ModelNumber}\n{mycar.Make}");
+
+            Console.WriteLine("-------------***********------------");
+            Console.WriteLine($"Before function calling {{Car Object}} ::{mycar.ModelNumber}\t{mycar.Make}");
+            Console.WriteLine("Ref Type, Pass By Ref");
+            obj.refPassByRef(ref mycar);
+            Console.WriteLine($"After function calling :: {mycar.ModelNumber}\t{mycar.Make}");
+            Console.WriteLine("-------------***********------------");
+
+            Console.ReadLine();
         }
-        public int valPassByRef(ref int y)
-        {
-            y = y + 10;
-            return y;
-        }
-        public void refPassByVal(car mycar)
-        {
-            mycar.ModelNumber = 25;
-            mycar.Make = "Mercedes Benz";
-        }
-        public void refPassByRef(ref car mycar)
-        {
-            mycar.ModelNumber = 25;
-            mycar.Make = "Mercedes Benz";
-        }
-    }
-    public class car
-    {
-        public int ModelNumber { get; set; }
-        public string Make { get; set; }
     }
 }
