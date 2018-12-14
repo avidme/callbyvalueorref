@@ -1,0 +1,54 @@
+using System;
+using System.Threading.Tasks;
+
+namespace Ays.ValvsRef
+{
+   public class CallingHack
+    {
+        
+        public int valPassByValue(int y)
+        {
+            y = y + 10;
+            return y;
+        }
+        public int valPassByRef(ref int y)
+        {
+            y = y + 10;
+            return y;
+        }
+        #region void return type
+        public void valPassByRefvoid(ref int y)
+        {
+            y = y + 10;
+            
+        }
+        public void refPassByVal(car catchcar)
+        {
+            //catchcar = null; It means just initialize this catchcar variable to null.
+            // This is so because of value parameter. A new variable catchcar is created and is initialized with the memory address of the object {10,BMW},
+            //which is actually stored in the mycar parameter. But the catchcar reinitialized its variable to null.
+            //this will just set mycar to null instead of effecting anything to the parameter in function invocation mycar.
+            //mycar still points to the object{10,BMW}
+            
+            catchcar.ModelNumber = 25; // catchcar is now pointing at the memory address sent by the mycar and is changing its properties.
+            catchcar.Make = "Mercedes Benz";
+        }
+        public void refPassByRef(ref car catchcar)
+        {            
+            catchcar.ModelNumber = 105;
+            catchcar.Make = "Bugati";
+            //catchcar=null 
+            //catchcar=null sets the parameter mycar in the function invocation to null because its passed as ref. 
+            //Note: In ref parameters, the variable itself is passed.
+            //In addition to the above, the statement, catchcar=new car{ ModelNumber = 106, Make = "Skoda"} will make the parameter mycar to map to a different new object.
+            //catchcar = new car { ModelNumber = 106, Make = "Skoda" };
+        }
+        #endregion
+
+    }
+    public class car
+    {
+        public int ModelNumber { get; set; }
+        public string Make { get; set; }
+    }
+}
